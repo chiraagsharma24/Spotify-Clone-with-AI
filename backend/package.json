@@ -2,12 +2,13 @@
 	"name": "backend",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.js",
+	"main": "src/index.js",
 	"scripts": {
 		"dev": "nodemon src/index.js",
 		"start": "node src/index.js",
 		"seed:songs": "node src/seeds/songs.js",
-		"seed:albums": "node src/seeds/albums.js"
+		"seed:albums": "node src/seeds/albums.js",
+		"build": "echo 'No build step needed for backend'"
 	},
 	"keywords": [],
 	"type": "module",
@@ -27,5 +28,8 @@
 	},
 	"devDependencies": {
 		"nodemon": "^3.1.7"
+	},
+	"engines": {
+		"node": ">=18.0.0"
 	}
 }
