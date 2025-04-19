@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "src/index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "src/index.js"
+    }
+  ],
+  "env": {
+    "PORT": "5000",
+    "MONGODB_URI": "mongodb+srv://chirag24:yuqt7qTITDQ30XTA@cluster0.icebtj6.mongodb.net/",
+    "ADMIN_EMAIL": "chiragnoida3345@gmail.com",
+    "NODE_ENV": "production",
+    "CLOUDINARY_API_KEY": "677289598464564",
+    "CLOUDINARY_API_SECRET": "UN9toGoNXktYj_emqPrRlt_96MU",
+    "CLOUDINARY_CLOUD_NAME": "dezgo9x2k",
+    "CLERK_PUBLISHABLE_KEY": "pk_test_c3VwZXJiLWxlbXVyLTkuY2xlcmsuYWNjb3VudHMuZGV2JA",
+    "CLERK_SECRET_KEY": "sk_test_myXocnGGeRBtyrNR9SlD2XDffHmpheLLizPcPYlHEP",
+    "GEMINI_API_KEY": "AIzaSyC04X51MOBIdSfp75K5DqNAq1T-jLrZUp8"
+  }
+} 

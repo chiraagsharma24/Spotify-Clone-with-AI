@@ -25,6 +25,10 @@
         }
       ]
     }
-  ]
+  ],
+  "env": {
+    "VITE_CLERK_PUBLISHABLE_KEY": "pk_test_c3VwZXJiLWxlbXVyLTkuY2xlcmsuYWNjb3VudHMuZGV2JA",
+    "VITE_API_URL": "https://spotify-clone-with-ai-backend.vercel.app/api"
+  }
 } 
 } 

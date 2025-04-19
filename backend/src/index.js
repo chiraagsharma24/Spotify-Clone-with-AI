@@ -28,9 +28,25 @@ const PORT = process.env.PORT;
 const httpServer = createServer(app);
 initializeSocket(httpServer);
 
+// CORS configuration
+const allowedOrigins = [
+	"http://localhost:3000",
+	"https://spotify-clone-with-ai.vercel.app",
+	"https://spotify-clone-with-ai.vercel.app/"
+];
+
 app.use(
 	cors({
-		origin: "http://localhost:3000",
+		origin: function(origin, callback) {
+			// Allow requests with no origin (like mobile apps or curl requests)
+			if (!origin) return callback(null, true);
+			
+			if (allowedOrigins.indexOf(origin) === -1) {
+				const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+				return callback(new Error(msg), false);
+			}
+			return callback(null, true);
+		},
 		credentials: true,
 	})
 );
@@ -64,6 +80,7 @@ cron.schedule("0 * * * *", () => {
 	}
 });
 
+// API routes
 app.use("/api/users", userRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/auth", authRoutes);
@@ -72,15 +89,27 @@ app.use("/api/albums", albumRoutes);
 app.use("/api/stats", statRoutes);
 app.use("/api/ai", aiRoutes);
 
+// Health check endpoint
+app.get("/api/health", (req, res) => {
+	res.status(200).json({ status: "ok", message: "Server is running" });
+});
+
+// Serve static files in production
 if (process.env.NODE_ENV === "production") {
-	app.use(express.static(path.join(__dirname, "../frontend/dist")));
-	app.get("*", (req, res) => {
-		res.sendFile(path.resolve(__dirname, "../frontend", "dist", "index.html"));
-	});
+	// This is only for local production testing
+	// In Vercel, this won't be used
+	const frontendPath = path.join(__dirname, "../../frontend/dist");
+	if (fs.existsSync(frontendPath)) {
+		app.use(express.static(frontendPath));
+		app.get("*", (req, res) => {
+			res.sendFile(path.resolve(frontendPath, "index.html"));
+		});
+	}
 }
 
 // error handler
 app.use((err, req, res, next) => {
+	console.error(err.stack);
 	res.status(500).json({ message: process.env.NODE_ENV === "production" ? "Internal server error" : err.message });
 });
 
