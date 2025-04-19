@@ -45,9 +45,13 @@ The AI feature personalizes your music experience using three types of recommend
 
 ```
 
-PORT=your_port MONGODB_URI=your_mongodb_uri ADMIN_EMAIL=admin_email NODE_ENV=development_or_production
+PORT=your_port 
+MONGODB_URI=your_mongodb_uri 
+ADMIN_EMAIL=admin_email 
+NODE_ENV=development_or_production
 
-CLOUDINARY_API_KEY=your_key CLOUDINARY_API_SECRET=your_secret CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_key 
+CLOUDINARY_API_SECRET=your_secret CLOUDINARY_CLOUD_NAME=your_cloud_name
 
 CLERK_SECRET_KEY=your_clerk_secret CLERK_PUBLISHABLE_KEY=your_clerk_publishable GEMINI_API_KEY=your_gemini_key
 
